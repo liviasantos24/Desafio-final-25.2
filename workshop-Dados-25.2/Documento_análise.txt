@@ -1,0 +1,106 @@
+Documentação da Análise das Consultas
+
+1. Consulta – Situação dos veículos
+
+    SELECT Status_veiculo, COUNT(*) AS TotalVeiculos
+    FROM Veiculos
+    GROUP BY Status_veiculo;
+
+-   O que faz: Conta quantos veículos existem em cada status
+    (Disponível, Alugado, Manutenção).
+-   Utilidade: Ajuda a concessionária a entender a disponibilidade da
+    frota.
+
+------------------------------------------------------------------------
+
+2. Consulta – Valor médio dos aluguéis
+
+    SELECT AVG(Valor_total) AS ValorMedioAluguel
+    FROM Aluguel;
+
+-   O que faz: Calcula a média de valor gasto nos contratos de aluguel.
+-   Utilidade: Mostra o ticket médio dos clientes.
+
+------------------------------------------------------------------------
+
+3. Consulta – Custos de manutenção por tipo
+
+    SELECT Tipo_manutencao, SUM(Valor) AS CustoTotal
+    FROM Manutencao
+    GROUP BY Tipo_manutencao;
+
+-   O que faz: Soma os custos de manutenção agrupando por tipo
+    (Preventiva ou Corretiva).
+-   Utilidade: Permite analisar em qual tipo de manutenção a empresa
+    mais gasta.
+
+------------------------------------------------------------------------
+
+4. Consulta – Clientes e seus aluguéis
+
+    SELECT
+        C.Nome AS NomeCliente,
+        A.Codigo_aluguel,
+        A.Data_inicio,
+        A.Valor_total
+    FROM Cliente AS C
+    INNER JOIN Aluguel AS A
+    ON C.CPF = A.fk_Cliente_CPF;
+
+-   O que faz: Lista os clientes com os aluguéis que realizaram.
+-   Utilidade: Relaciona dados de clientes e contratos, útil para
+    relatórios de vendas.
+
+------------------------------------------------------------------------
+
+5. Consulta – Veículos e manutenções
+
+    SELECT
+        V.Placa,
+        V.Marca,
+        V.Modelo,
+        M.Tipo_manutencao,
+        M.Data_manutencao
+    FROM Veiculos AS V
+    LEFT JOIN Contem AS C
+    ON V.Placa = C.fk_Veiculos_Placa
+    LEFT JOIN Manutencao AS M
+    ON C.fk_Manutencao_Codigo_manutencao = M.Codigo_manutencao;
+
+-   O que faz: Mostra cada veículo junto das manutenções associadas.
+-   Utilidade: Histórico de manutenção dos veículos.
+
+------------------------------------------------------------------------
+
+6. Atualização – Veículo em manutenção
+
+    UPDATE Veiculos
+    SET Status_veiculo = 'Manutenção'
+    WHERE Placa = 'ABC-123';
+
+-   O que faz: Altera o status de um veículo específico para Manutenção.
+-   Utilidade: Mantém o banco atualizado sobre a situação da frota.
+
+------------------------------------------------------------------------
+
+7. Atualização – Alterar endereço de cliente
+
+    UPDATE Cliente
+    SET Endereco = 'Av. Nova, 1234'
+    WHERE CPF = '11111111111';
+
+-   O que faz: Atualiza o endereço do cliente João Silva.
+-   Utilidade: Garante que os dados dos clientes fiquem sempre corretos.
+
+------------------------------------------------------------------------
+
+8. Consultas finais – Visualizar dados
+
+    SELECT * FROM Cliente;
+    SELECT * FROM Aluguel;
+    SELECT * FROM Pagamento;
+    SELECT * FROM Veiculos;
+    SELECT * FROM Manutencao;
+
+-   O que faz: Lista todos os registros das tabelas.
+-   Utilidade: Verificação geral dos dados cadastrados no sistema.

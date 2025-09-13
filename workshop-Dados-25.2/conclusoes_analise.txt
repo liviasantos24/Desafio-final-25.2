@@ -1,0 +1,8 @@
+1. Clientes por Nível de Risco
+A maior parte dos clientes do Banco Box é de baixo risco, o que é um ponto positivo. No entanto, a presença de clientes de risco médio e alto justifica a necessidade de um modelo de classificação para gerenciar a inadimplência.
+
+2. Relação entre Renda e Risco
+A renda mensal tem um impacto direto no risco. Clientes com renda mais alta tendem a ter um risco menor de inadimplência, enquanto aqueles com renda mais baixa se concentram nas categorias de risco mais elevado.
+
+3. Fatores de Risco: Dívida e Histórico de Crédito
+As variáveis mais importantes para prever o risco são a relação dívida/renda e o histórico de crédito. Clientes com risco alto geralmente têm uma alta proporção de dívida em relação à renda e um histórico de crédito ruim.
